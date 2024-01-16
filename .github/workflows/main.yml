@@ -1,0 +1,54 @@
+name: Main Workflow
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to hit the API from anywhere to trigger workflow on all branchs
+  # /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
+  # https://stackoverflow.com/a/68148239
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: checkout repo content
+        uses: actions/checkout@v3.3.0 # checkout the repository content to github runner
+
+      - name: simple echo
+        run: |
+          echo -e $GITHUB_TOKEN;
+          echo -e $GITHUB_WORKFLOW;
+          echo -e $GITHUB_ACTION;
+          echo -e $GITHUB_EVENT_NAME;
+          echo -e $GITHUB_TOKEN;
+
+      - name: Pull content
+        uses: actions/checkout@v3.3.0
+        with:
+          repository: ${{ secrets.MY_REPO }}
+          ref: master
+          fetch-depth: 0
+          token: ${{ secrets.GH_PAT }}
+          path: content
+
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9' # install the python version needed
+
+      # - name: install python packages
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install -r requirements.txt
+
+      - name: execute py script # run main.py
+        env:
+          SOME_SECRET: ${{ secrets.SOME_SECRET }}
+        run: python main.py
+
