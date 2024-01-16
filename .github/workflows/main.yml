@@ -11,6 +11,11 @@ defaults:
   run:
     shell: bash
 
+# Sets permissions for the GITHUB_TOKEN to write to repository
+permissions:
+  contents: write     # create a release
+  deployments: write  # permits an action to create a new deployment
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,15 +25,15 @@ jobs:
       - name: checkout repo content
         uses: actions/checkout@v3.3.0 # checkout the repository content to github runner
 
-      - name: simple echo
+      - name: Simple echo
         run: |
           echo -e $GITHUB_TOKEN;
           echo -e $GITHUB_WORKFLOW;
           echo -e $GITHUB_ACTION;
           echo -e $GITHUB_EVENT_NAME;
-          echo -e $GITHUB_TOKEN;
+          echo -e $GH_PAT;
 
-      - name: Pull content
+      - name: Pull content from REPO_02
         uses: actions/checkout@v3.3.0
         with:
           repository: ${{ secrets.MY_REPO }}
