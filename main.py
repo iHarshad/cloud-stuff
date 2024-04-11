@@ -1,7 +1,6 @@
 import datetime as dt
 import os
 
-import sqlalchemy as sa
 from supabase import Client, create_client
 from supabase.client import ClientOptions
 from dotenv import load_dotenv
@@ -25,4 +24,4 @@ print(f"GITHUB_EVENT_NAME: {os.environ.get('GITHUB_EVENT_NAME')}")
 print(f"GITHUB_JOB: {os.environ.get('GITHUB_JOB')}")
 
 print(f"Message: { os.environ.get('GITHUB_EVENT_INPUTS_MESSAGE1') }")
-print(f"Tags: {os.environ.get('INPUT_MESSAGE')}"
+print(f"Tags: {os.environ.get('INPUT_MESSAGE')}")

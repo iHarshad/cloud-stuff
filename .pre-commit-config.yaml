@@ -1,38 +1,57 @@
 repos:
-  - hooks:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
       - id: check-json
       - id: check-toml
       - id: check-yaml
       - id: check-case-conflict
+        name: Prevent errors on case-insensitive filesystems
       - id: trailing-whitespace
-    repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+        name: Trim trailing whitespace
+      - id: end-of-file-fixer
+        name: Ensure file ends with one newline
 
-  - hooks:
-      - id: poetry-check
-      - args:
-          - --no-update
-        id: poetry-lock
-      - id: poetry-export
-        args: ["--dev", "-f", "requirements.txt", "-o", "requirements.txt"]
-        verbose: true
-      - id: poetry-install
-    repo: https://github.com/python-poetry/poetry
+
+  - repo: https://github.com/python-poetry/poetry
     rev: 1.7.0
+    hooks:
+      - id: poetry-install
+        name: Install packages from poetry.lock
+      - id: poetry-check
+        name: Validate poetry config
 
-  - hooks:
-      - id: black
-    repo: https://github.com/psf/black
+      - id: poetry-lock
+        name: Verify poetry.lock file
+        args:
+          - --no-update
+
+      - id: poetry-export
+        name: Export dependancies
+        args: ["-f", "requirements.txt", "-o", "requirements.txt"]
+        verbose: false
+
+      - id: poetry-export
+        name: Export dev dependancies
+        args: ["--dev", "-f", "requirements.txt", "-o", "requirements-dev.txt"]
+        verbose: false
+
+
+  - repo: https://github.com/psf/black
     rev: 24.1.1
+    hooks:
+      - id: black
+        name: Format python files
 
-  - hooks:
-      - id: markdownlint
-    repo: https://github.com/igorshubovych/markdownlint-cli
+  - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.39.0
+    hooks:
+      - id: markdownlint-fix
 
-  - hooks:
-      - args:
-          - --fix
-        id: ruff
-    repo: https://github.com/astral-sh/ruff-pre-commit
+  - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.1.15
+    hooks:
+      - id: ruff
+        name: Lint python code
+        args:
+          - --fix
