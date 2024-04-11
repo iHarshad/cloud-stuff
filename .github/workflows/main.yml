@@ -64,4 +64,5 @@ jobs:
       - name: Execute python code
         env:
           SOME_SECRET: ${{ secrets.SOME_SECRET }}
+          MY_REPO: ${{ secrets.MY_REPO}}
         run: python3 main.py
