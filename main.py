@@ -5,8 +5,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# from supabase import Client, create_client
-# from supabase.client import ClientOptions
 
 # DB_URL: str = os.environ.get("SUPABASE_URL")
 # DB_KEY: str = os.environ.get("SUPABASE_KEY")
@@ -28,3 +26,4 @@ print(f"GITHUB_JOB: {os.environ.get('GITHUB_JOB')}")
 print(f"Message: { os.environ.get('GITHUB_EVENT_INPUTS_MESSAGE1') }")
 print(f"Tags: {os.environ.get('INPUT_MESSAGE')}")
 print("\n\n##### SCRIPT END #####\n\n")
+print(f"\n\nSOME_SECRET: {os.environ.get('SOME_SECRET')}")
