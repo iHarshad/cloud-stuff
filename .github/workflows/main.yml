@@ -1,10 +1,6 @@
 name: Main Workflow
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
-  # Allows you to hit the API from anywhere to trigger workflow on all branchs
-  # /repos/{owner}/{repo}/actions/workflows/{workflow_id}/dispatches
-  # https://stackoverflow.com/a/68148239
   workflow_dispatch:
     inputs:
       message1:
@@ -14,6 +10,14 @@ on:
       tag1:
         description: 'Test scenario tags'
         required: false
+
+env:
+  GH_USER: iHarshad
+  GH_REPO: iharshad.github.io
+  GH_PAT: ${{ secrets.GH_DEPLOY_KEY }}
+  GH_WORKFLOW: gh-pages.yml
+
+
 
 defaults:
   run:
@@ -31,7 +35,7 @@ jobs:
     steps:
 
       - name: checkout repo content
-        uses: actions/checkout@v3.3.0 # checkout the repository content to github runner
+        uses: actions/checkout@v4 # checkout the repository content to github runner
 
       - name: Simple echo
         run: |
@@ -40,6 +44,11 @@ jobs:
           echo -e $GITHUB_ACTION;
           echo -e $GITHUB_EVENT_NAME;
           echo -e $GH_PAT;
+
+      - run: |
+          git log --pretty=format:" Branch: %d%x0A Commit: %H%x0A Author: %an <%ae>%x0A Date: %ad%x0A Message: %s%x0A"
+          echo "Message: ${{ github.event.inputs.message1 }}"
+          echo "Tags: ${{ github.event.inputs.tag1 }}"
 
       - name: setup python
         uses: actions/setup-python@v5
