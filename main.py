@@ -1,19 +1,20 @@
 import datetime as dt
 import os
 
-from supabase import Client, create_client
-from supabase.client import ClientOptions
 from dotenv import load_dotenv
 
 load_dotenv()
 
-DB_URL: str = os.environ.get("SUPABASE_URL")
-DB_KEY: str = os.environ.get("SUPABASE_KEY")
-supabase: Client = create_client(
-    DB_URL,
-    DB_KEY,
-    options=ClientOptions(postgrest_client_timeout=10, storage_client_timeout=10),
-)
+# from supabase import Client, create_client
+# from supabase.client import ClientOptions
+
+# DB_URL: str = os.environ.get("SUPABASE_URL")
+# DB_KEY: str = os.environ.get("SUPABASE_KEY")
+# supabase: Client = create_client(
+#     DB_URL,
+#     DB_KEY,
+#     options=ClientOptions(postgrest_client_timeout=10, storage_client_timeout=10),
+# )
 
 
 print("\n\n##### SCRIPT START #####\n\n")
