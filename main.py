@@ -16,6 +16,7 @@ supabase: Client = create_client(
 )
 
 
+print("\n\n##### SCRIPT START #####\n\n")
 print(f"Hello {dt.datetime.now()}")
 
 print(f"GITHUB_RUN_ID = {os.environ.get('GITHUB_RUN_ID')}")
@@ -25,3 +26,4 @@ print(f"GITHUB_JOB: {os.environ.get('GITHUB_JOB')}")
 
 print(f"Message: { os.environ.get('GITHUB_EVENT_INPUTS_MESSAGE1') }")
 print(f"Tags: {os.environ.get('INPUT_MESSAGE')}")
+print("\n\n##### SCRIPT END #####\n\n")
