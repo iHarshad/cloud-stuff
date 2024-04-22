@@ -37,6 +37,15 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4 # checkout the repository content to github runner
 
+      - name: Checkout other repo
+        uses: actions/checkout@v4 # checkout the repository content to github runner
+        with:
+          repository: iHarshad/other-repo
+          token: ${{ secrets.GH_PAT }}
+          ref: other  # checkout 'other' branch
+          path: other-repo
+          fetch-depth: 1
+
       - name: Simple echo
         run: |
           echo -e $GITHUB_TOKEN;
@@ -44,6 +53,7 @@ jobs:
           echo -e $GITHUB_ACTION;
           echo -e $GITHUB_EVENT_NAME;
           echo -e $GH_PAT;
+          ls -alh;
 
       - name: Hygiene logging
         run: |
@@ -54,7 +64,7 @@ jobs:
       - name: Setup python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10' # install the python version needed
+          python-version: '3.12' # install the python version needed
 
       - name: Install python dependancy packages
         run: |
