@@ -157,6 +157,7 @@ if __name__ == "__main__":
     message_data = os.environ.get('INPUT_MESSAGE')
     print(f"Tags: {message_data}")
 
+    con = sql_connection()
     log_data = (dt.datetime.now, message_data)
     insert_new_data(con, log_data)
     print(f"\n\n SCRIPT END \n")
