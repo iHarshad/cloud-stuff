@@ -1,5 +1,12 @@
+import datetime as dt
+import os
 import sqlite3
+
+from dotenv import load_dotenv
 from sqlite3 import Error
+
+load_dotenv()
+
 
 DB_LOCATION="./other-repo/mytest.db"
 
