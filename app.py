@@ -134,7 +134,7 @@ def insert_new_data(con, entities):
 
 
 def main():
-    con = sql_connection()
+    # con = sql_connection()
     # create_table(con)
     # entities = (1, 'Anna', 'Smith', 'IT', 'Dev', 2000, '2020-02-09')
     # insert_data(con, entities)
@@ -146,6 +146,7 @@ def main():
     message_data = os.environ.get('INPUT_MESSAGE')
     print(f"Tags: {message_data}")
 
+    con = sql_connection()
     create_dump_table(con)
     print("1")
     log_data = (dt.datetime.now, message_data)
@@ -156,6 +157,6 @@ def main():
 
 
 if __name__ == "__main__":
-    print(f"\n\n APP SCRIPT END \n")
+    print(f"\n\n APP SCRIPT START \n\n")
     main()
-    print(f"\n\n APP SCRIPT END \n")
+    print(f"\n\n APP SCRIPT END \n\n")
