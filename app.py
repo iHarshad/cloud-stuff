@@ -135,24 +135,27 @@ def insert_new_data(con, entities):
 
 def main():
     con = sql_connection()
-    create_table(con)
-    entities = (1, 'Anna', 'Smith', 'IT', 'Dev', 2000, '2020-02-09')
-    insert_data(con, entities)
-    add_data(con)
-    select_all(con)
-    update_data(con, 3000, 1)
-    delete_record(con, "Roger")
+    # create_table(con)
+    # entities = (1, 'Anna', 'Smith', 'IT', 'Dev', 2000, '2020-02-09')
+    # insert_data(con, entities)
+    # add_data(con)
+    # select_all(con)
+    # update_data(con, 3000, 1)
+    # delete_record(con, "Roger")
 
     message_data = os.environ.get('INPUT_MESSAGE')
     print(f"Tags: {message_data}")
 
     create_dump_table(con)
+    print("1")
     log_data = (dt.datetime.now, message_data)
+    print("2")
     insert_new_data(con, log_data)
 
     con.close()
 
 
 if __name__ == "__main__":
+    print(f"\n\n APP SCRIPT END \n")
     main()
-    print(f"\n\n SCRIPT END \n")
+    print(f"\n\n APP SCRIPT END \n")
