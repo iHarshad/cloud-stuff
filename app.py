@@ -40,8 +40,12 @@ def create_table(con):
         date TEXT);''')
         con.commit()
         print('The table is created successfully')
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 def create_dump_table(con):
     """ Create the table with given columns
@@ -53,8 +57,12 @@ def create_dump_table(con):
         message_content TEXT;''')
         con.commit()
         print('The table is created successfully')
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 def insert_data(con, entities):
     """  Insert records into the table
@@ -67,8 +75,12 @@ def insert_data(con, entities):
         cur.execute(query, entities)
         con.commit()
         print("The record added successfully")
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 
 def add_data(con):
@@ -80,8 +92,12 @@ def add_data(con):
         cur.execute("INSERT INTO employees VALUES(4, 'Alan', 'Meyer', 'IT', 'Dev', 5000, '2019-04-15')")
         con.commit()
         print("The records added successfully")
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 
 def select_all(con):
@@ -93,8 +109,12 @@ def select_all(con):
         rows = cur.fetchall()
         for row in rows:
             print(row)
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 
 def update_data(con, salary, id):
@@ -105,8 +125,12 @@ def update_data(con, salary, id):
                                                                       id))
         con.commit()
         print("The record updated successfully")
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 
 def delete_record(con, surname):
@@ -118,8 +142,12 @@ def delete_record(con, surname):
         cur.execute(query, (surname,))
         con.commit()
         print("The record delated successfully")
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 def insert_new_data(con, entities):
     """  Insert records into the table
@@ -131,8 +159,12 @@ def insert_new_data(con, entities):
         cur.execute(query, entities)
         con.commit()
         print("The record added successfully")
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 
 def main():
