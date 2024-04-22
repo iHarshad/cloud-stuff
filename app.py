@@ -3,7 +3,6 @@ import os
 import sqlite3
 
 from dotenv import load_dotenv
-from sqlite3 import Error
 
 load_dotenv()
 
@@ -18,8 +17,12 @@ def sql_connection():
     try:
         db = sqlite3.connect(DB_LOCATION)
         return db
-    except Error:
-        print(Error)
+    except sqlite3.Error as err:
+        print('SQLite error: %s' % (' '.join(err.args)))
+        print("Exception class is: ", err.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
 
 def create_table(con):
