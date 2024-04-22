@@ -53,7 +53,7 @@ jobs:
           echo -e $GITHUB_ACTION;
           echo -e $GITHUB_EVENT_NAME;
           echo -e $GH_PAT;
-          ls -alh;
+          ls -alh other-repo;
 
       - name: Hygiene logging
         run: |
@@ -75,4 +75,6 @@ jobs:
         env:
           SOME_SECRET: ${{ secrets.SOME_SECRET }}
           MY_REPO: ${{ secrets.MY_REPO}}
-        run: python3 main.py
+        run: |
+          python3 main.py
+          INPUT_MESSAGE="${{ github.event.inputs.message1 }}" python3 app.py
