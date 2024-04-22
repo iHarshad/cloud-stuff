@@ -11,10 +11,10 @@ on:
         description: 'Test scenario tags'
         required: false
 
-# env:
-#   GH_USER: iHarshad
-#   GH_REPO: iharshad.github.io
-#   GH_PAT: ${{ secrets.GH_DEPLOY_KEY }}
+env:
+  GH_USER: iHarshad
+  GH_REPO: ${{ secrets.MY_REPO }}
+  GH_PAT: ${{ secrets.GH_PAT }}
 #   GH_WORKFLOW: gh-pages.yml
 
 
@@ -40,9 +40,9 @@ jobs:
       - name: Checkout other repo
         uses: actions/checkout@v4 # checkout the repository content to github runner
         with:
-          repository: iHarshad/other-repo
+          repository: $GH_USER/$GH_REPO
           token: ${{ secrets.GH_PAT }}
-          ref: other  # checkout 'other' branch
+          # ref: other  # checkout 'other' branch
           path: other-repo
           fetch-depth: 1
 
