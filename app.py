@@ -40,6 +40,19 @@ def create_table(con):
     except Error:
         print(Error)
 
+def create_dump_table(con):
+    """ Create the table with given columns
+    """
+    try:
+        cur = con.cursor()
+        cur.execute('''CREATE TABLE IF NOT EXISTS logger(
+        created_at TEXT,
+        message_content TEXT
+        ;''')
+        con.commit()
+        print('The table is created successfully')
+    except Error:
+        print(Error)
 
 def insert_data(con, entities):
     """  Insert records into the table
@@ -106,6 +119,19 @@ def delete_record(con, surname):
     except Error:
         print(Error)
 
+def insert_new_data(con, entities):
+    """  Insert records into the table
+    """
+    query = """INSERT INTO logger (created_at, message_content) VALUES(?,?)"""
+
+    try:
+        cur = con.cursor()
+        cur.execute(query, entities)
+        con.commit()
+        print("The record added successfully")
+    except Error:
+        print(Error)
+
 
 def main():
     con = sql_connection()
@@ -128,6 +154,9 @@ if __name__ == "__main__":
     print(f"GITHUB_JOB: {os.environ.get('GITHUB_JOB')}")
 
     print(f"Message: { os.environ.get('GITHUB_EVENT_INPUTS_MESSAGE1') }")
-    print(f"Tags: {os.environ.get('INPUT_MESSAGE')}")
+    message_data = os.environ.get('INPUT_MESSAGE')
+    print(f"Tags: {message_data}")
 
+    log_data = (dt.datetime.now, message_data)
+    insert_new_data(con, log_data)
     print(f"\n\n SCRIPT END \n")
