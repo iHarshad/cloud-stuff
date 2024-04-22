@@ -142,22 +142,17 @@ def main():
     select_all(con)
     update_data(con, 3000, 1)
     delete_record(con, "Roger")
+
+    message_data = os.environ.get('INPUT_MESSAGE')
+    print(f"Tags: {message_data}")
+
+    create_dump_table(con)
+    log_data = (dt.datetime.now, message_data)
+    insert_new_data(con, log_data)
+
     con.close()
 
 
 if __name__ == "__main__":
     main()
-    print(f"\n\n MAIN FUNCTION END \n")
-    print(f"GITHUB_RUN_ID = {os.environ.get('GITHUB_RUN_ID')}")
-    print(f"GITHUB_SHA: {os.environ.get('GITHUB_SHA')}")
-    print(f"GITHUB_EVENT_NAME: {os.environ.get('GITHUB_EVENT_NAME')}")
-    print(f"GITHUB_JOB: {os.environ.get('GITHUB_JOB')}")
-
-    print(f"Message: { os.environ.get('GITHUB_EVENT_INPUTS_MESSAGE1') }")
-    message_data = os.environ.get('INPUT_MESSAGE')
-    print(f"Tags: {message_data}")
-
-    con = sql_connection()
-    log_data = (dt.datetime.now, message_data)
-    insert_new_data(con, log_data)
     print(f"\n\n SCRIPT END \n")
