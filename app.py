@@ -50,8 +50,7 @@ def create_dump_table(con):
         cur = con.cursor()
         cur.execute('''CREATE TABLE IF NOT EXISTS logger(
         created_at TEXT,
-        message_content TEXT
-        ;''')
+        message_content TEXT;''')
         con.commit()
         print('The table is created successfully')
     except Error:
