@@ -40,7 +40,7 @@ jobs:
       - name: Checkout other repo
         uses: actions/checkout@v4 # checkout the repository content to github runner
         with:
-          repository: $GH_USER/$GH_REPO
+          repository: iHarshad/hidden-content
           token: ${{ secrets.GH_PAT }}
           # ref: other  # checkout 'other' branch
           path: other-repo
