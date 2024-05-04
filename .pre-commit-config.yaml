@@ -10,7 +10,9 @@ repos:
       - id: trailing-whitespace
         name: Trim trailing whitespace
       - id: end-of-file-fixer
-        name: Ensure file ends with one newline
+        # name: Ensure file ends with one newline
+      # - id: mixed-line-ending
+      #       args: ["--fix=lf"]
 
 
   - repo: https://github.com/python-poetry/poetry
