@@ -4,7 +4,9 @@ from dotenv import load_dotenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from models import Base, User
+# from models import Base, User
+from models.base import Base
+from models.users import User
 
 load_dotenv()
 
