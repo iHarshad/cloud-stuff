@@ -68,8 +68,8 @@ def get_all_users():
 
 if __name__ == "__main__":
     create_db_tables(engine)
-    print(create_user(name="Github Action", email="gha@github.com"))
-    print(f"\n\n\nINPUT_MESSAGE: {os.environ.get('INPUT_MESSAGE')}\n\n\n")
+    INPUT_MESSAGE = os.environ.get("INPUT_MESSAGE")
+    print(create_user(name=f"{INPUT_MESSAGE}", email="gha@github.com"))
     print("SELECT all data \n\n")
     results = get_all_users()
     for item in results:
