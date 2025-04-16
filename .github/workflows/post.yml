@@ -23,20 +23,20 @@ jobs:
           echo '${{ toJSON(github.event.client_payload) }}' > payload.json
           cat payload.json
 
-      - name: Modify private repository contents
-        run: |
-          cd private-repo
+      # - name: Modify private repository contents
+      #   run: |
+          # cd private-repo
           # Example modification - replace with your actual modifications
-          echo "# Modified on $(date)" >> README.md
-          echo "Modified with data: $(cat ../payload.json | jq -r '.message')" >> data_log.txt
+          # echo "Modified with data: $(cat ../payload.json | jq -r '.message')" >> data_log.txt
 
       - name: Run script from private repository with payload data
         run: |
           cd private-repo
           # Make script executable if needed
-          chmod +x ./script.sh
+          # chmod +x ./script.sh
           # Run the script with payload data
-          ./script.sh "$(cat ../payload.json | jq -r '.message')"
+          # ./script.sh "$(cat ../payload.json | jq -r '.message')"
+          python3 run.py "$(cat ../payload.json | jq -r '.message')"
 
       - name: Commit and push changes
         run: |
