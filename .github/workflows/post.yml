@@ -29,9 +29,9 @@ jobs:
           # Example modification - replace with your actual modifications
           # echo "Modified with data: $(cat ../payload.json | jq -r '.message')" >> data_log.txt
 
-      - name: Reset database
-        run: |
-          rm -f private-repo/*.db
+      # - name: Reset database
+      #   run: |
+      #     rm -f private-repo/*.db
 
       - name: Run script from private repository with payload data
         run: |
