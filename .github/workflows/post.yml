@@ -18,16 +18,10 @@ jobs:
           token: ${{ secrets.GH_PAT }}
           path: private-repo
 
-      - name: Set up payload data
-        run: |
-          echo '${{ toJSON(github.event.client_payload) }}' > payload.json
-          cat payload.json
-
-      # - name: Modify private repository contents
+      # - name: Set up payload data
       #   run: |
-          # cd private-repo
-          # Example modification - replace with your actual modifications
-          # echo "Modified with data: $(cat ../payload.json | jq -r '.message')" >> data_log.txt
+      #     echo '${{ toJSON(github.event.client_payload) }}' > payload.json
+      #     cat payload.json
 
       # - name: Reset database
       #   run: |
@@ -40,7 +34,8 @@ jobs:
           # chmod +x ./script.sh
           # Run the script with payload data
           # ./script.sh "$(cat ../payload.json | jq -r '.message')"
-          python3 run.py -f ../payload.json
+          # python3 run.py -f ../payload.json
+          echo '${{ toJSON(github.event.client_payload) }}' | python3 run.py
 
       - name: Commit and push changes
         run: |
