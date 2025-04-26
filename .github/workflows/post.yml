@@ -35,12 +35,6 @@ jobs:
       - name: Run script from private repository with payload data
         run: |
           cd private-repo
-          # Make script executable if needed
-          # chmod +x ./script.sh
-          # Run the script with payload data
-          # ./script.sh "$(cat ../payload.json | jq -r '.message')"
-          # python3 run.py -f ../payload.json
-          # echo '${{ toJSON(github.event.client_payload) }}' | python3 run.py
           python3 run.py
 
       - name: Commit and push changes
