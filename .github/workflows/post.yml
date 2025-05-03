@@ -32,20 +32,25 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Install the latest version of uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "0.5.12"
+
       - name: Run script from private repository with payload data
         run: |
           cd private-repo
-          python3 run.py
+          uv run --script insert.py
 
-      - name: Commit and push changes
-        run: |
-          cd private-repo
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add .
-          # git commit -m "Update from GitHub Action with payload: $(cat ../payload.json | jq -r '.message')"
-          git commit -m "Update from GitHub Action"
-          git push
+      # - name: Commit and push changes
+      #   run: |
+      #     cd private-repo
+      #     git config user.name "GitHub Actions"
+      #     git config user.email "actions@github.com"
+      #     git add .
+      #     # git commit -m "Update from GitHub Action with payload: $(cat ../payload.json | jq -r '.message')"
+      #     git commit -m "Update from GitHub Action"
+      #     git push
 
       - name: Cleanup
         run: echo "Action completed successfully"
