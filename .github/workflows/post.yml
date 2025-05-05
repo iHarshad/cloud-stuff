@@ -37,7 +37,13 @@ jobs:
         with:
           version: "0.5.12"
 
+      - name: Add uv to PATH
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+
       - name: Run script from private repository with payload data
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          ENCODED_KEY: ${{ secrets.ENCODED_KEY }}
         run: |
           cd private-repo
           uv run --script insert.py
