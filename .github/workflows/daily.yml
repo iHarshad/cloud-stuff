@@ -1,0 +1,37 @@
+name: Daily
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs every day at midnight UTC
+  workflow_dispatch:
+
+
+jobs:
+  process-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout public repository
+        uses: actions/checkout@v4
+
+      - name: Checkout private repository
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ secrets.MY_PRIVATE_REPO }}
+          token: ${{ secrets.GH_PAT }}
+          path: private-repo
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: |
+          pip3 install -r ./private-repo/requirements.txt
+
+      - name: Run script from private repository
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          ENCODED_KEY: ${{ secrets.ENCODED_KEY }}
+        run: |
+          python3 ./private-repo/daily_db.py
