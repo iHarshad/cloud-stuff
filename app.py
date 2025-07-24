@@ -20,9 +20,7 @@ def get_engine():
         print("TURSO_DATABASE_URL or TURSO_AUTH_TOKEN is missing")
         DB_URL = "sqlite:///my_test.db"
     else:
-        DB_URL = (
-            f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
-        )
+        DB_URL = f"sqlite+{TURSO_DATABASE_URL}/?authToken={TURSO_AUTH_TOKEN}&secure=true"
 
     try:
         print(f"Attempting database connection to: {DB_URL}")

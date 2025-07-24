@@ -19,8 +19,5 @@ class User(Base):
         init=False, server_default=func.current_timestamp()
     )
 
-    # def __repr__(self):
-    #     return f"<Test a:{self.a} b:{self.b}>"
-
     def __str__(self):
         return f"From str method of User: ID = {self.id} \nName = {self.name} \nEmail = {self.email} \nCreated at = {self.created_at}\n"

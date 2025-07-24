@@ -23,7 +23,7 @@ print(f"GITHUB_SHA: {os.environ.get('GITHUB_SHA')}")
 print(f"GITHUB_EVENT_NAME: {os.environ.get('GITHUB_EVENT_NAME')}")
 print(f"GITHUB_JOB: {os.environ.get('GITHUB_JOB')}")
 
-print(f"Message: { os.environ.get('GITHUB_EVENT_INPUTS_MESSAGE1') }")
+print(f"Message: {os.environ.get('GITHUB_EVENT_INPUTS_MESSAGE1')}")
 print(f"Tags: {os.environ.get('INPUT_MESSAGE')}")
 
 print(f"\n\nSOME_SECRET: {os.environ.get('SOME_SECRET')}")
