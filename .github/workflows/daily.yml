@@ -26,8 +26,10 @@ jobs:
         with:
           python-version: '3.12'
 
-      # - name: Debug
-      #   run: |
+      - name: Debug
+        run: |
+          python3
+          os.getenv("GITHUB_ACTIONS")
       #     ls -alh --color=auto
       #     date +"%A %d %b %Y %Z"
       #     echo $GITHUB_EVENT_PATH
