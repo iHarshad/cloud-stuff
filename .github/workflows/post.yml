@@ -45,6 +45,7 @@ jobs:
           ls -alh --color=auto
           date +"%A %d %b %Y %Z"
           echo $GITHUB_EVENT_PATH
+          cat $GITHUB_EVENT_PATH
 
       - name: Run script from private repository with payload data
         env:
