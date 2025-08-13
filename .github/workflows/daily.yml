@@ -26,6 +26,12 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Debug
+        run: |
+          ls -alh --color=auto
+          date +"%A %d %b %Y %Z"
+          echo $GITHUB_EVENT_PATH
+
       - name: Install dependencies
         run: |
           pip3 install -r ./private-repo/requirements.txt
