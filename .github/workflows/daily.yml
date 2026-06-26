@@ -3,7 +3,9 @@ name: Daily
 on:
   schedule:
     # - cron: '0 0 * * *' # Runs every day at midnight UTC
-    - cron: '0 2 1-31/2 * *' # Every odd day
+    #   timezone: '	Asia/Kolkata'
+    - cron: '0 2 1-31/2 * *' # Every odd day at 02:00
+      timezone: '	Asia/Kolkata'
   workflow_dispatch:
 
 
